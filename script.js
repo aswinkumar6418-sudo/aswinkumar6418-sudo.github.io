@@ -56,3 +56,42 @@ document.getElementById('quoteBtn')?.addEventListener('click', function(){
     window.location.href = 'mailto:keshav.inbox@proton.me?subject=Request%20for%20quote';
   }
 });
+
+
+// PRICING / QUOTE MODAL behavior
+(function(){
+  const modal = document.getElementById('priceModal');
+  const close = document.getElementById('modalClose');
+  const backdrop = document.getElementById('modalBackdrop');
+  const quoteBtn = document.getElementById('quoteBtn');
+
+  function openModal(){
+    if(!modal) return;
+    modal.setAttribute('aria-hidden','false');
+    document.body.style.overflow = 'hidden';
+    // focus first actionable element
+    const wh = document.getElementById('modalWh');
+    if(wh) wh.focus();
+  }
+  function closeModal(){
+    if(!modal) return;
+    modal.setAttribute('aria-hidden','true');
+    document.body.style.overflow = '';
+  }
+
+  if(quoteBtn){
+    quoteBtn.removeEventListener('click', window._oldQuoteHandler);
+    quoteBtn.addEventListener('click', function(e){
+      e.preventDefault();
+      openModal();
+    });
+  }
+
+  if(close) close.addEventListener('click', closeModal);
+  if(backdrop) backdrop.addEventListener('click', closeModal);
+
+  // close on Escape
+  document.addEventListener('keydown', function(ev){
+    if(ev.key === 'Escape') closeModal();
+  });
+})();
