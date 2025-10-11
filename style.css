@@ -40,3 +40,22 @@ html,body{height:100%;margin:0;font-family:var(--sans);background:linear-gradien
   .site-header .wrap{padding:8px}
   .wrap{padding:16px}
 }
+
+/* HIRE ME SECTION */
+.hire{margin:36px 0;padding:22px;border-radius:12px;background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));box-shadow:0 6px 18px rgba(2,6,23,0.45);border:1px solid rgba(255,255,255,0.03)}
+.hire-inner{display:flex;gap:20px;align-items:flex-start;flex-wrap:wrap}
+.hire-left{flex:1 1 360px}
+.hire-right{width:320px;flex:0 0 320px}
+.hire h2{margin:0 0 8px;font-size:20px}
+.hire-lead{color:var(--muted);margin-bottom:10px}
+.hire-list{margin:0 0 14px;padding-left:18px;color:var(--muted)}
+.hire-list li{margin:6px 0}
+.hire-ctas{display:flex;flex-direction:column;gap:10px}
+.hire-note{font-size:13px;color:var(--muted);margin-top:10px}
+
+/* ensure buttons full-width on mobile */
+@media (max-width:560px){
+  .hire-inner{flex-direction:column}
+  .hire-right{width:100%;flex:1 1 100%}
+  .hire-ctas{flex-direction:column}
+}

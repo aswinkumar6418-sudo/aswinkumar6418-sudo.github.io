@@ -43,3 +43,16 @@ document.getElementById('contactForm').addEventListener('submit', function(e){
   status.textContent = 'Opening your email app…';
   setTimeout(()=> status.textContent = '', 3000);
 });
+
+
+// HIRE ME: Request Quote behavior
+document.getElementById('quoteBtn')?.addEventListener('click', function(){
+  const form = document.getElementById('contactForm');
+  if(form){
+    form.scrollIntoView({behavior:'smooth', block:'center'});
+    form.querySelector('input, textarea')?.focus();
+  } else {
+    // fallback: open email
+    window.location.href = 'mailto:keshav.inbox@proton.me?subject=Request%20for%20quote';
+  }
+});
