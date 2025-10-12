@@ -1,0 +1,147 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Aswin — The NextFrame</title>
+  <link rel="stylesheet" href="style.css">
+  <meta name="description" content="Aswin — Crafting stories, frame by frame">
+</head>
+<body>
+  <!-- Loading overlay with subtle Easter egg -->
+  <div id="loader" aria-hidden="true">
+    <div class="loader-center">
+      <div class="logo">The NextFrame</div>
+      <div class="egg" id="egg">Made with purpose — for K</div>
+    </div>
+  </div>
+
+  <header class="site-header">
+    <div class="wrap">
+      <div class="brand">
+        <div class="brand-title">Aswin</div>
+        <div class="brand-sub">The NextFrame</div>
+      </div>
+      <nav class="nav">
+        <a href="#work">Work</a>
+        <a href="#about">About</a>
+        <a href="#contact">Contact</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="wrap main">
+    <section id="hero" class="hero">
+      <h1>Crafting stories, frame by frame</h1>
+      <p class="lead">I design visual narratives and build focused portfolio sites for creators and small studios.</p>
+      <p class="actions">
+        <a class="btn" href="#work">See work</a>
+        <a class="btn ghost" href="#contact">Contact</a>
+      </p>
+    </section>
+
+    <section id="work" class="cards">
+      <h2>Selected Work</h2>
+      <div class="grid">
+        <article class="card">
+          <h3>Project One</h3>
+          <p>Short description — a visual piece or video sample.</p>
+        </article>
+        <article class="card">
+          <h3>Project Two</h3>
+          <p>Short description — a branding or motion sample.</p>
+        </article>
+        <article class="card">
+          <h3>Project Three</h3>
+          <p>Short description — another selected frame or clip.</p>
+        </article>
+      </div>
+    </section>
+
+    <section id="about" class="about">
+      <h2>About</h2>
+      <p>Hi — I’m Aswin. I craft visual stories and frame-by-frame moments for creators and brands. I focus on clarity, rhythm, and a purposeful final frame.</p>
+    </section>
+
+    <section id="contact" class="contact">
+      <h2>Get in touch</h2>
+      <p>Prefer WhatsApp or Email — both work.</p>
+      <div class="contact-links">
+        <a class="btn" href="https://wa.me/971503632130?text=Hello%20Aswin%2C%20I%27d%20like%20to%20talk%20about%20a%20project" target="_blank" rel="noopener">WhatsApp</a>
+        <a class="btn ghost" href="mailto:keshav.inbox@proton.me">Email</a>
+      </div>
+
+      <div class="inline-form">
+        <form id="contactForm">
+          <label><input name="name" placeholder="Your name" required></label>
+          <label><input name="email" type="email" placeholder="Email" required></label>
+          <label><textarea name="message" rows="4" placeholder="Message" required></textarea></label>
+          <div class="form-row">
+            <button class="btn" type="submit">Send</button>
+            <span class="note">Or contact via WhatsApp / Email above</span>
+          </div>
+        </form>
+        <div id="formStatus" class="status" aria-live="polite"></div>
+      </div>
+    </section>
+  
+  <!-- HIRE ME SECTION -->
+  <section id="hire" class="hire">
+    <div class="hire-inner">
+      <div class="hire-left">
+        <h2>Hire Me — Quick & focused websites</h2>
+        <p class="hire-lead">I build clean portfolio and small business sites — fast, mobile-first, and crafted with purpose.</p>
+        <ul class="hire-list">
+          <li><strong>Portfolio / Personal site</strong> — AED 150</li>
+          <li><strong>Business landing page</strong> — AED 200</li>
+          <li><strong>Maintenance + updates</strong> — AED 50 / month</li>
+        </ul>
+      </div>
+
+      <div class="hire-right">
+        <div class="hire-ctas">
+          <a class="btn" id="whatsappBtn" href="https://wa.me/971503632130?text=Hi%20Aswin%2C%20I%27m%20interested%20in%20your%20services" target="_blank" rel="noopener">Chat on WhatsApp</a>
+          <a class="btn ghost" href="mailto:keshav.inbox@proton.me?subject=Website%20Inquiry">Email</a>
+          <button class="btn" id="quoteBtn">Request Quote</button>
+        </div>
+        <p class="hire-note">Available for remote or local work — quick turnaround. Free initial consult via WhatsApp.</p>
+      </div>
+    </div>
+  </section>
+  <!-- /HIRE ME SECTION -->
+
+</main>
+
+  <footer class="site-footer">
+    <div class="wrap">
+      <small>© <span id="year"></span> Aswin — The NextFrame</small>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+
+  <!-- PRICING / QUOTE MODAL -->
+  <div id="priceModal" class="modal" aria-hidden="true">
+    <div class="modal-backdrop" id="modalBackdrop"></div>
+    <div class="modal-panel" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+      <button class="modal-close" id="modalClose" aria-label="Close">✕</button>
+      <h3 id="modalTitle">Quick Pricing & Quote</h3>
+      <p class="modal-lead">Short, fixed-price packages — ready to start.</p>
+      <ul class="modal-list">
+        <li><strong>Portfolio Site</strong> — AED 150<br><span class="muted">3 pages, responsive, contact</span></li>
+        <li><strong>Landing / Promo Page</strong> — AED 200<br><span class="muted">Conversion-focused, CTA, analytics</span></li>
+        <li><strong>Starter E-commerce (basic)</strong> — AED 450<br><span class="muted">Product page + simple order form</span></li>
+      </ul>
+
+      <div class="modal-actions">
+        <a id="modalWh" class="btn" href="https://wa.me/971503632130?text=Hi%20Aswin%2C%20I%27d%20like%20a%20quote" target="_blank" rel="noopener">Chat on WhatsApp</a>
+        <a class="btn ghost" href="mailto:keshav.inbox@proton.me?subject=Request%20for%20Quote">Email</a>
+      </div>
+
+      <p class="modal-note">If you want a custom scope, click WhatsApp for a free consult.</p>
+    </div>
+  </div>
+  <!-- /PRICING / QUOTE MODAL -->
+
+</body>
+</html>

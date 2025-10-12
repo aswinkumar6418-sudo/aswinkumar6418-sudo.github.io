@@ -1,147 +1,322 @@
 <!doctype html>
 <html lang="en">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width,initial-scale=1">
-  <title>Aswin — The NextFrame</title>
-  <link rel="stylesheet" href="style.css">
-  <meta name="description" content="Aswin — Crafting stories, frame by frame">
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>NextFrame — Aswin</title>
+  <meta name="description" content="NextFrame — Crafting stories, frame by frame. Portfolio site for Aswin." />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root{
+      --page-bg: #07060a;
+      --outer-muted: #9aa3b4;
+      --screen-bg-1: #06060a;
+      --screen-glow: linear-gradient(90deg, rgba(123,47,247,0.12), rgba(241,7,163,0.06));
+      --accent1: #7b2ff7;
+      --accent2: #f107a3;
+      --panel: rgba(255,255,255,0.03);
+      --radius: 18px;
+      --white: #ffffff;
+    }
+    *{box-sizing:border-box}
+    html,body{height:100%;margin:0;background:
+      radial-gradient(1000px 500px at 10% 10%, rgba(123,47,247,0.06), transparent 8%),
+      radial-gradient(900px 400px at 90% 90%, rgba(241,7,163,0.03), transparent 6%),
+      var(--page-bg);
+      font-family: 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial;
+      color:var(--white)
+    }
+
+    /* Header outside the screen */
+    .page-header{
+      max-width:1300px;
+      margin:28px auto 18px;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:16px;
+      padding:0 20px;
+    }
+    .brand{
+      display:flex;
+      flex-direction:column;
+      gap:6px;
+    }
+    .brand .title{
+      font-weight:800;
+      font-size:22px;
+      letter-spacing:0.6px;
+    }
+    .brand .subtitle{
+      color:var(--outer-muted);
+      font-size:13px;
+      margin-top:2px;
+    }
+    nav.header-nav a{
+      color:var(--outer-muted);
+      text-decoration:none;
+      padding:8px 12px;
+      border-radius:10px;
+      font-weight:600;
+      font-size:14px;
+    }
+    nav.header-nav a:hover{color:var(--white); background: rgba(255,255,255,0.02)}
+
+    /* Desktop "monitor" container */
+    .desktop-wrap{
+      max-width:1300px;
+      margin: 18px auto 60px;
+      padding: 0 20px;
+      display:flex;
+      justify-content:center;
+    }
+    .desktop-frame{
+      width:1100px;               /* big desktop size */
+      max-width:calc(100% - 40px);
+      border-radius:22px;
+      position:relative;
+      box-shadow: 0 30px 80px rgba(2,6,23,0.6), 0 6px 20px rgba(0,0,0,0.4);
+      background:
+        linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
+      border: 1px solid rgba(255,255,255,0.03);
+      overflow:hidden;
+    }
+
+    /* top bezel / speaker look */
+    .desktop-frame::before{
+      content:"";
+      position:absolute;
+      left:50%;
+      transform:translateX(-50%);
+      top:10px;
+      width:120px;
+      height:8px;
+      border-radius:6px;
+      background: rgba(255,255,255,0.03);
+      filter: blur(.2px);
+      z-index:5;
+    }
+
+    /* inner "screen" area — colorful */
+    .screen{
+      padding:34px 46px;
+      background:
+        linear-gradient(180deg, rgba(12,10,15,0.8), rgba(6,6,10,0.85)),
+        var(--screen-glow);
+      min-height:620px;
+      display:block;
+    }
+
+    /* layout inside screen */
+    .screen-grid{
+      display:grid;
+      grid-template-columns: 1fr 380px;
+      gap:36px;
+      align-items:start;
+    }
+
+    /* Hero */
+    .eyebrow{
+      display:inline-block;
+      background:rgba(255,255,255,0.02);
+      padding:8px 12px;
+      border-radius:999px;
+      color:var(--outer-muted);
+      font-size:14px;
+      margin-bottom:14px;
+    }
+    .hero-title{
+      font-size:56px;
+      line-height:1.02;
+      margin:8px 0 12px;
+      font-weight:800;
+      letter-spacing:-0.6px;
+    }
+    .hero-lead{
+      color:var(--outer-muted);
+      max-width:60ch;
+      font-size:18px;
+      margin-bottom:20px;
+    }
+    .cta-row{display:flex;gap:14px;margin-top:18px}
+    .btn{
+      display:inline-flex;align-items:center;gap:10px;padding:12px 18px;border-radius:12px;border:0;
+      font-weight:700;text-decoration:none;color:var(--white);
+      cursor:pointer;
+      background:linear-gradient(90deg,var(--accent1),var(--accent2));
+      box-shadow: 0 6px 22px rgba(123,47,247,0.12);
+    }
+    .btn.ghost{background:transparent;border:1px solid rgba(255,255,255,0.04);color:var(--outer-muted)}
+
+    /* Projects cards */
+    .projects{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:32px}
+    .project{background:var(--panel);padding:20px;border-radius:12px;color:var(--white);box-shadow:0 8px 24px rgba(0,0,0,0.45)}
+    .project h4{margin:0 0 8px;font-size:16px}
+    .project p{margin:0;color:var(--outer-muted);font-size:14px}
+
+    /* right column card */
+    .card{
+      background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
+      padding:22px;border-radius:12px;color:var(--white);
+      border:1px solid rgba(255,255,255,0.02);
+    }
+    .card .meta{color:var(--outer-muted);font-size:14px;margin-bottom:12px}
+    .contact-links{display:flex;flex-direction:column;gap:10px}
+
+    /* selected-work area (full width) */
+    .selected-work{
+      margin-top:40px;
+      padding:20px;
+      background: linear-gradient(180deg, rgba(255,255,255,0.01), rgba(255,255,255,0.00));
+      border-radius:12px;
+      color:var(--outer-muted);
+    }
+
+    /* contact form inside screen bottom */
+    .contact-form{display:flex;flex-direction:column;gap:12px;margin-top:30px}
+    input,textarea{background:rgba(0,0,0,0.35);border:1px solid rgba(255,255,255,0.04);padding:12px;border-radius:10px;color:var(--white);outline:none}
+    textarea{min-height:120px;resize:vertical}
+
+    /* footer inside screen */
+    .screen-footer{margin-top:34px;color:var(--outer-muted);font-size:14px;text-align:center;padding-bottom:8px}
+
+    /* Desktop frame bottom "stand" */
+    .desktop-stand{
+      height:24px;
+      background:transparent;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      margin-top:10px;
+    }
+
+    /* responsiveness */
+    @media (max-width:1200px){
+      .desktop-frame{width:960px}
+      .hero-title{font-size:46px}
+    }
+    @media (max-width:980px){
+      .desktop-frame{width:calc(100% - 40px)}
+      .screen-grid{grid-template-columns:1fr}
+      .projects{grid-template-columns:repeat(2,1fr)}
+      .hero-title{font-size:34px}
+    }
+    @media (max-width:560px){
+      .projects{grid-template-columns:1fr}
+      .hero-title{font-size:28px}
+      .eyebrow{font-size:13px}
+    }
+  </style>
 </head>
 <body>
-  <!-- Loading overlay with subtle Easter egg -->
-  <div id="loader" aria-hidden="true">
-    <div class="loader-center">
-      <div class="logo">The NextFrame</div>
-      <div class="egg" id="egg">Made with purpose — for K</div>
+  <!-- header OUTSIDE the desktop "screen" -->
+  <div class="page-header">
+    <div class="brand">
+      <div class="title">NextFrame</div>
+      <div class="subtitle">Crafting stories, frame by frame — Aswin</div>
     </div>
+
+    <nav class="header-nav" aria-label="Main navigation">
+      <a href="index.html">Home</a>
+      <a href="about.html">About & Work</a>
+      <a href="contact.html">Contact</a>
+    </nav>
   </div>
 
-  <header class="site-header">
-    <div class="wrap">
-      <div class="brand">
-        <div class="brand-title">Aswin</div>
-        <div class="brand-sub">The NextFrame</div>
-      </div>
-      <nav class="nav">
-        <a href="#work">Work</a>
-        <a href="#about">About</a>
-        <a href="#contact">Contact</a>
-      </nav>
-    </div>
-  </header>
+  <!-- big desktop frame centered -->
+  <div class="desktop-wrap" role="main">
+    <div class="desktop-frame" aria-hidden="false">
+      <div class="screen" role="region" aria-label="Desktop screen content">
+        <div class="screen-grid">
 
-  <main class="wrap main">
-    <section id="hero" class="hero">
-      <h1>Crafting stories, frame by frame</h1>
-      <p class="lead">I design visual narratives and build focused portfolio sites for creators and small studios.</p>
-      <p class="actions">
-        <a class="btn" href="#work">See work</a>
-        <a class="btn ghost" href="#contact">Contact</a>
-      </p>
-    </section>
+          <!-- Left: hero + projects -->
+          <div>
+            <span class="eyebrow">Crafting stories, frame by frame</span>
+            <h1 class="hero-title">Visual narratives & focused portfolios for creators</h1>
+            <p class="hero-lead">I design focused portfolio websites — clean, fast, and crafted with purpose. I help creators and small studios present work with clarity and rhythm.</p>
 
-    <section id="work" class="cards">
-      <h2>Selected Work</h2>
-      <div class="grid">
-        <article class="card">
-          <h3>Project One</h3>
-          <p>Short description — a visual piece or video sample.</p>
-        </article>
-        <article class="card">
-          <h3>Project Two</h3>
-          <p>Short description — a branding or motion sample.</p>
-        </article>
-        <article class="card">
-          <h3>Project Three</h3>
-          <p>Short description — another selected frame or clip.</p>
-        </article>
-      </div>
-    </section>
+            <div class="cta-row">
+              <a class="btn" href="#work">See work</a>
+              <a class="btn ghost" href="contact.html">Contact</a>
+            </div>
 
-    <section id="about" class="about">
-      <h2>About</h2>
-      <p>Hi — I’m Aswin. I craft visual stories and frame-by-frame moments for creators and brands. I focus on clarity, rhythm, and a purposeful final frame.</p>
-    </section>
+            <div class="projects" id="work" aria-label="Selected projects">
+              <article class="project">
+                <h4>Project One</h4>
+                <p>Short description — a visual piece or video sample.</p>
+              </article>
+              <article class="project">
+                <h4>Project Two</h4>
+                <p>Short description — a branding or motion sample.</p>
+              </article>
+              <article class="project">
+                <h4>Project Three</h4>
+                <p>Short description — another selected frame or clip.</p>
+              </article>
+            </div>
 
-    <section id="contact" class="contact">
-      <h2>Get in touch</h2>
-      <p>Prefer WhatsApp or Email — both work.</p>
-      <div class="contact-links">
-        <a class="btn" href="https://wa.me/971503632130?text=Hello%20Aswin%2C%20I%27d%20like%20to%20talk%20about%20a%20project" target="_blank" rel="noopener">WhatsApp</a>
-        <a class="btn ghost" href="mailto:keshav.inbox@proton.me">Email</a>
-      </div>
+            <div class="selected-work" aria-hidden="false">
+              <strong>Selected Work</strong>
+              <p style="margin:8px 0 0">A curated selection of projects and frames. Replace these cards with your actual projects — images, video embeds, or links.</p>
+            </div>
 
-      <div class="inline-form">
-        <form id="contactForm">
-          <label><input name="name" placeholder="Your name" required></label>
-          <label><input name="email" type="email" placeholder="Email" required></label>
-          <label><textarea name="message" rows="4" placeholder="Message" required></textarea></label>
-          <div class="form-row">
-            <button class="btn" type="submit">Send</button>
-            <span class="note">Or contact via WhatsApp / Email above</span>
+            <!-- contact form mini (optional) inside the same screen if you want -->
+            <div class="contact-form" aria-label="Quick contact">
+              <input id="mini-name" placeholder="Your name">
+              <input id="mini-email" type="email" placeholder="Email">
+              <textarea id="mini-message" placeholder="Message"></textarea>
+              <div style="display:flex;gap:12px">
+                <button class="btn" onclick="openContact()">Open contact</button>
+                <a class="btn ghost" href="contact.html">Full contact page</a>
+              </div>
+            </div>
           </div>
-        </form>
-        <div id="formStatus" class="status" aria-live="polite"></div>
-      </div>
-    </section>
-  
-  <!-- HIRE ME SECTION -->
-  <section id="hire" class="hire">
-    <div class="hire-inner">
-      <div class="hire-left">
-        <h2>Hire Me — Quick & focused websites</h2>
-        <p class="hire-lead">I build clean portfolio and small business sites — fast, mobile-first, and crafted with purpose.</p>
-        <ul class="hire-list">
-          <li><strong>Portfolio / Personal site</strong> — AED 150</li>
-          <li><strong>Business landing page</strong> — AED 200</li>
-          <li><strong>Maintenance + updates</strong> — AED 50 / month</li>
-        </ul>
-      </div>
 
-      <div class="hire-right">
-        <div class="hire-ctas">
-          <a class="btn" id="whatsappBtn" href="https://wa.me/971503632130?text=Hi%20Aswin%2C%20I%27m%20interested%20in%20your%20services" target="_blank" rel="noopener">Chat on WhatsApp</a>
-          <a class="btn ghost" href="mailto:keshav.inbox@proton.me?subject=Website%20Inquiry">Email</a>
-          <button class="btn" id="quoteBtn">Request Quote</button>
+          <!-- Right: about/contact card -->
+          <aside class="card" aria-labelledby="about-card-title">
+            <div id="about-card-title" style="font-weight:700;font-size:18px;margin-bottom:8px">About</div>
+            <div class="meta">Hi — I'm Aswin. I craft visual stories and frame-by-frame moments for creators and brands. I focus on clarity, rhythm and a purposeful final frame.</div>
+
+            <div style="height:14px"></div>
+
+            <div style="font-weight:700;margin-bottom:8px">Get in touch</div>
+            <div class="contact-links">
+              <a class="btn" href="https://wa.me/971503632130" target="_blank" rel="noopener">WhatsApp</a>
+              <a class="btn ghost" href="mailto:aswin.inbox@proton.me">Email</a>
+            </div>
+
+            <div style="height:16px"></div>
+
+            <div style="font-weight:700;margin-bottom:8px">Quick rates</div>
+            <div class="meta">
+              • Portfolio / Personal site — AED 150<br>
+              • Landing page — AED 200<br>
+              • Maintenance & updates — AED 50 / month
+            </div>
+          </aside>
+
         </div>
-        <p class="hire-note">Available for remote or local work — quick turnaround. Free initial consult via WhatsApp.</p>
-      </div>
-    </div>
-  </section>
-  <!-- /HIRE ME SECTION -->
 
-</main>
-
-  <footer class="site-footer">
-    <div class="wrap">
-      <small>© <span id="year"></span> Aswin — The NextFrame</small>
-    </div>
-  </footer>
-
-  <script src="script.js"></script>
-
-  <!-- PRICING / QUOTE MODAL -->
-  <div id="priceModal" class="modal" aria-hidden="true">
-    <div class="modal-backdrop" id="modalBackdrop"></div>
-    <div class="modal-panel" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
-      <button class="modal-close" id="modalClose" aria-label="Close">✕</button>
-      <h3 id="modalTitle">Quick Pricing & Quote</h3>
-      <p class="modal-lead">Short, fixed-price packages — ready to start.</p>
-      <ul class="modal-list">
-        <li><strong>Portfolio Site</strong> — AED 150<br><span class="muted">3 pages, responsive, contact</span></li>
-        <li><strong>Landing / Promo Page</strong> — AED 200<br><span class="muted">Conversion-focused, CTA, analytics</span></li>
-        <li><strong>Starter E-commerce (basic)</strong> — AED 450<br><span class="muted">Product page + simple order form</span></li>
-      </ul>
-
-      <div class="modal-actions">\n        <a class="btn" href="/proposal.pdf" download>Download Proposal (PDF)</a>
-        <a id="modalWh" class="btn" href="https://wa.me/971503632130?text=Hi%20Aswin%2C%20I%27d%20like%20a%20quote" target="_blank" rel="noopener">Chat on WhatsApp</a>
-        <a class="btn ghost" href="mailto:keshav.inbox@proton.me?subject=Request%20for%20Quote">Email</a>
+        <div class="screen-footer">
+          © <span id="year">2025</span> Aswin — The NextFrame • Made with purpose
+        </div>
       </div>
 
-      <p class="modal-note"> <a href="/proposal.html" class="btn ghost" style="margin-left:10px">Open Proposal</a>If you want a custom scope, click WhatsApp for a free consult.</p>
+      <!-- optional stand under the monitor to make it look like a desktop -->
+      <div class="desktop-stand" role="presentation" aria-hidden="true">
+        <div style="width:160px;height:8px;border-radius:6px;background:rgba(255,255,255,0.02)"></div>
+      </div>
     </div>
   </div>
-  <!-- /PRICING / QUOTE MODAL -->
 
+  <script>
+    // year
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    function openContact(){
+      // quick shortcut to open contact page or scroll
+      window.location.href = 'contact.html';
+    }
+  </script>
 </body>
 </html>
