@@ -1,147 +1,132 @@
 <!doctype html>
 <html lang="en">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width,initial-scale=1">
-  <title>Aswin — The NextFrame</title>
-  <link rel="stylesheet" href="style.css">
-  <meta name="description" content="Aswin — Crafting stories, frame by frame">
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Contact — The NextFrame</title>
+  <meta name="description" content="Get in touch with Aswin at The NextFrame. WhatsApp, email or use the contact form." />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root{--bg:#05060a;--panel:#0b0b0f;--muted:#98a0b3;--accent1:#7b2ff7;--accent2:#f107a3;--glass:rgba(255,255,255,0.03);--radius:14px}
+    *{box-sizing:border-box}
+    body{margin:0;font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Arial;background:linear-gradient(180deg,#05060a,#03030a);color:#fff}
+    .wrap{max-width:1100px;margin:0 auto;padding:28px}
+    header{display:flex;justify-content:space-between;align-items:center;padding:18px 0}
+    .brand h1{margin:0;font-size:20px}
+    .brand p{margin:0;color:var(--muted);font-size:13px}
+
+    .hero{background:linear-gradient(180deg, rgba(125,35,255,0.04), transparent);padding:48px;border-radius:12px}
+    .hero h2{margin:0;font-size:36px}
+    .hero .crumb{color:var(--muted);margin-top:8px}
+
+    .map{margin-top:18px;border-radius:8px;overflow:hidden;height:240px;background:#111}
+    .content{display:grid;grid-template-columns:1fr 420px;gap:28px;margin-top:24px}
+
+    /* left - form */
+    .card{background:var(--panel);padding:22px;border-radius:12px;box-shadow:0 10px 30px rgba(0,0,0,0.5)}
+    form label{display:block;font-size:13px;color:var(--muted);margin-bottom:8px}
+    input,textarea{width:100%;padding:12px;border-radius:8px;border:none;background:#07070a;color:#fff;margin-bottom:12px}
+    textarea{min-height:140px}
+    .row{display:flex;gap:12px}
+    .btn{display:inline-block;padding:10px 14px;border-radius:10px;border:0;background:linear-gradient(90deg,var(--accent1),var(--accent2));color:#fff;font-weight:700;cursor:pointer}
+    .btn.ghost{background:transparent;border:1px solid rgba(255,255,255,0.06)}
+
+    /* right - contact info */
+    .info h4{margin:0 0 8px}
+    .meta{color:var(--muted);font-size:14px;margin-bottom:18px}
+    .info .line{display:flex;gap:12px;align-items:flex-start;margin-bottom:12px}
+    .icon{width:34px;height:34px;border-radius:8px;background:rgba(255,255,255,0.02);display:inline-flex;align-items:center;justify-content:center;color:var(--muted)}
+    .footnote{color:var(--muted);font-size:13px;margin-top:8px}
+
+    footer{margin-top:40px;padding:28px 0;color:var(--muted);text-align:center}
+
+    @media (max-width:980px){.content{grid-template-columns:1fr}.hero h2{font-size:28px}.map{height:200px}}
+  </style>
 </head>
 <body>
-  <!-- Loading overlay with subtle Easter egg -->
-  <div id="loader" aria-hidden="true">
-    <div class="loader-center">
-      <div class="logo">The NextFrame</div>
-      <div class="egg" id="egg">Made with purpose — for K</div>
-    </div>
-  </div>
-
-  <header class="site-header">
-    <div class="wrap">
+  <div class="wrap">
+    <header>
       <div class="brand">
-        <div class="brand-title">Aswin</div>
-        <div class="brand-sub">The NextFrame</div>
+        <h1>Aswin</h1>
+        <p>The NextFrame</p>
       </div>
-      <nav class="nav">
-        <a href="#work">Work</a>
-        <a href="#about">About</a>
-        <a href="#contact">Contact</a>
+      <nav>
+        <a href="/">Home</a>
       </nav>
-    </div>
-  </header>
+    </header>
 
-  <main class="wrap main">
-    <section id="hero" class="hero">
-      <h1>Crafting stories, frame by frame</h1>
-      <p class="lead">I design visual narratives and build focused portfolio sites for creators and small studios.</p>
-      <p class="actions">
-        <a class="btn" href="#work">See work</a>
-        <a class="btn ghost" href="#contact">Contact</a>
-      </p>
-    </section>
-
-    <section id="work" class="cards">
-      <h2>Selected Work</h2>
-      <div class="grid">
-        <article class="card">
-          <h3>Project One</h3>
-          <p>Short description — a visual piece or video sample.</p>
-        </article>
-        <article class="card">
-          <h3>Project Two</h3>
-          <p>Short description — a branding or motion sample.</p>
-        </article>
-        <article class="card">
-          <h3>Project Three</h3>
-          <p>Short description — another selected frame or clip.</p>
-        </article>
-      </div>
-    </section>
-
-    <section id="about" class="about">
-      <h2>About</h2>
-      <p>Hi — I’m Aswin. I craft visual stories and frame-by-frame moments for creators and brands. I focus on clarity, rhythm, and a purposeful final frame.</p>
-    </section>
-
-    <section id="contact" class="contact">
-      <h2>Get in touch</h2>
-      <p>Prefer WhatsApp or Email — both work.</p>
-      <div class="contact-links">
-        <a class="btn" href="https://wa.me/971503632130?text=Hello%20Aswin%2C%20I%27d%20like%20to%20talk%20about%20a%20project" target="_blank" rel="noopener">WhatsApp</a>
-        <a class="btn ghost" href="mailto:keshav.inbox@proton.me">Email</a>
-      </div>
-
-      <div class="inline-form">
-        <form id="contactForm">
-          <label><input name="name" placeholder="Your name" required></label>
-          <label><input name="email" type="email" placeholder="Email" required></label>
-          <label><textarea name="message" rows="4" placeholder="Message" required></textarea></label>
-          <div class="form-row">
-            <button class="btn" type="submit">Send</button>
-            <span class="note">Or contact via WhatsApp / Email above</span>
-          </div>
-        </form>
-        <div id="formStatus" class="status" aria-live="polite"></div>
-      </div>
-    </section>
-  
-  <!-- HIRE ME SECTION -->
-  <section id="hire" class="hire">
-    <div class="hire-inner">
-      <div class="hire-left">
-        <h2>Hire Me — Quick & focused websites</h2>
-        <p class="hire-lead">I build clean portfolio and small business sites — fast, mobile-first, and crafted with purpose.</p>
-        <ul class="hire-list">
-          <li><strong>Portfolio / Personal site</strong> — AED 150</li>
-          <li><strong>Business landing page</strong> — AED 200</li>
-          <li><strong>Maintenance + updates</strong> — AED 50 / month</li>
-        </ul>
-      </div>
-
-      <div class="hire-right">
-        <div class="hire-ctas">
-          <a class="btn" id="whatsappBtn" href="https://wa.me/971503632130?text=Hi%20Aswin%2C%20I%27m%20interested%20in%20your%20services" target="_blank" rel="noopener">Chat on WhatsApp</a>
-          <a class="btn ghost" href="mailto:keshav.inbox@proton.me?subject=Website%20Inquiry">Email</a>
-          <button class="btn" id="quoteBtn">Request Quote</button>
+    <main>
+      <section class="hero">
+        <div class="crumb">Home / Contact</div>
+        <h2>Contact Us</h2>
+        <p class="meta">Questions, briefs or a quick hello — reach me via WhatsApp or email, or use the form below and I’ll get back ASAP.</p>
+        <div class="map" aria-hidden="true">
+          <!-- Google Maps iframe (replace src if you want a specific place) -->
+          <iframe title="map" width="100%" height="100%" frameborder="0" style="border:0" src="https://www.google.com/maps?q=Dubai&output=embed"></iframe>
         </div>
-        <p class="hire-note">Available for remote or local work — quick turnaround. Free initial consult via WhatsApp.</p>
+      </section>
+
+      <div class="content">
+        <div>
+          <div class="card">
+            <h3 style="margin-top:0">Get In Touch</h3>
+            <p class="meta">Prefer WhatsApp or Email — both work. I usually reply on WhatsApp first.</p>
+
+            <form id="contactForm" onsubmit="handleSubmit(event)">
+              <label for="name">Your Name</label>
+              <input id="name" name="name" placeholder="Your name" required />
+
+              <label for="email">Your Email</label>
+              <input id="email" name="email" type="email" placeholder="you@example.com" required />
+
+              <label for="message">Your Message (optional)</label>
+              <textarea id="message" name="message" placeholder="Tell me a little about the project..."></textarea>
+
+              <div class="row">
+                <button class="btn" type="submit">Send Message</button>
+                <a class="btn ghost" href="https://wa.me/971503632130?text=Hi%20Aswin%2C%20I%20would%20like%20to%20talk" target="_blank">Open WhatsApp</a>
+              </div>
+            </form>
+
+            <p id="formStatus" class="footnote"></p>
+          </div>
+        </div>
+
+        <aside class="card info">
+          <h4>Contact Details</h4>
+          <p class="meta">Reach out directly — WhatsApp for quick replies, email for proposals and attachments.</p>
+
+          <div class="line"><div class="icon">📱</div><div><strong>WhatsApp</strong><div class="muted">+971 50 363 2130</div></div></div>
+          <div class="line"><div class="icon">✉️</div><div><strong>Email</strong><div class="muted">keshav.inbox@proton.me</div></div></div>
+          <div class="line"><div class="icon">📍</div><div><strong>Office</strong><div class="muted">Dubai, United Arab Emirates</div></div></div>
+
+          <div style="height:12px"></div>
+          <div class="footnote">If you want me to call — send your number and a short note and I’ll reply with a time.</div>
+        </aside>
       </div>
-    </div>
-  </section>
-  <!-- /HIRE ME SECTION -->
 
-</main>
+    </main>
 
-  <footer class="site-footer">
-    <div class="wrap">
-      <small>© <span id="year"></span> Aswin — The NextFrame</small>
-    </div>
-  </footer>
-
-  <script src="script.js"></script>
-
-  <!-- PRICING / QUOTE MODAL -->
-  <div id="priceModal" class="modal" aria-hidden="true">
-    <div class="modal-backdrop" id="modalBackdrop"></div>
-    <div class="modal-panel" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
-      <button class="modal-close" id="modalClose" aria-label="Close">✕</button>
-      <h3 id="modalTitle">Quick Pricing & Quote</h3>
-      <p class="modal-lead">Short, fixed-price packages — ready to start.</p>
-      <ul class="modal-list">
-        <li><strong>Portfolio Site</strong> — AED 150<br><span class="muted">3 pages, responsive, contact</span></li>
-        <li><strong>Landing / Promo Page</strong> — AED 200<br><span class="muted">Conversion-focused, CTA, analytics</span></li>
-        <li><strong>Starter E-commerce (basic)</strong> — AED 450<br><span class="muted">Product page + simple order form</span></li>
-      </ul>
-
-      <div class="modal-actions">\n        <a class="btn" href="/proposal.pdf" download>Download Proposal (PDF)</a>
-        <a id="modalWh" class="btn" href="https://wa.me/971503632130?text=Hi%20Aswin%2C%20I%27d%20like%20a%20quote" target="_blank" rel="noopener">Chat on WhatsApp</a>
-        <a class="btn ghost" href="mailto:keshav.inbox@proton.me?subject=Request%20for%20Quote">Email</a>
-      </div>
-
-      <p class="modal-note"> <a href="/proposal.html" class="btn ghost" style="margin-left:10px">Open Proposal</a>If you want a custom scope, click WhatsApp for a free consult.</p>
-    </div>
+    <footer>
+      <div>© <span id="year"></span> Aswin — The NextFrame</div>
+    </footer>
   </div>
-  <!-- /PRICING / QUOTE MODAL -->
 
+  <script>
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    function handleSubmit(e){
+      e.preventDefault();
+      const name = encodeURIComponent(document.getElementById('name').value.trim());
+      const email = encodeURIComponent(document.getElementById('email').value.trim());
+      const msg = encodeURIComponent(document.getElementById('message').value.trim());
+      const text = `Name: ${name}%0AEmail: ${email}%0AMessage: ${msg}`;
+      // prefer WhatsApp to send the message
+      const wa = `https://wa.me/971503632130?text=${text}`;
+      window.open(wa,'_blank');
+      document.getElementById('formStatus').textContent = 'Opening WhatsApp — if it does not open, please email keshav.inbox@proton.me';
+    }
+  </script>
 </body>
 </html>
+
