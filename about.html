@@ -1,8 +1,62 @@
-<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>About — Aswin</title><link rel="stylesheet" href="style.css"></head><body>
-<div class="wrap" style="padding-top:80px">
-  <a href="/" class="btn">← Home</a>
-  <h1>About</h1>
-  <p>Aswin — The NextFrame. Crafting stories, frame by frame.</p>
-  <p>Contact: <a href="mailto:keshav.inbox@proton.me">keshav.inbox@proton.me</a> · <a href="https://wa.me/971503632130">WhatsApp</a></p>
-</div>
-</body></html>
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>About — The NextFrame</title>
+  <meta name="description" content="Aswin — The NextFrame. Crafting stories, frame by frame." />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root{--bg:#06060a;--panel:#0b0b0f;--muted:#98a0b3;--accent1:#7b2ff7;--accent2:#f107a3}
+    *{box-sizing:border-box}
+    body{margin:0;font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Arial;background:linear-gradient(180deg,#05060a,#03030a);color:#fff}
+    .wrap{max-width:1100px;margin:36px auto;padding:28px}
+    a { color: #e6e6ff; text-decoration:none }
+    .btn { display:inline-block;padding:10px 14px;border-radius:10px;background:linear-gradient(90deg,var(--accent1),var(--accent2)); color:#fff; font-weight:700 }
+    header{display:flex;justify-content:space-between;align-items:center}
+    h1{margin:20px 0 8px;font-size:36px}
+    p.lead{color:var(--muted);max-width:72ch}
+    .meta{margin-top:18px;color:var(--muted)}
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <header>
+      <div>
+        <div style="font-weight:800">NextFrame</div>
+        <div style="color:var(--muted)">Crafting stories, frame by frame — Aswin</div>
+      </div>
+      <nav>
+        <a href="index.html" style="color:var(--muted);margin-right:18px">Home</a>
+        <a href="about.html" style="color:var(--muted);margin-right:18px">About & Work</a>
+        <a href="contact.html" style="color:var(--muted)">Contact</a>
+      </nav>
+    </header>
+
+    <main>
+      <a href="index.html" class="btn" style="margin-top:18px;display:inline-block">← Home</a>
+
+      <h1>About</h1>
+      <p class="lead">Aswin — The NextFrame. Crafting stories, frame by frame. I build focused portfolios and visual narratives for creators and small studios. I work with clarity, rhythm, and a purposeful final frame.</p>
+
+      <div class="meta">
+        <p><strong>Contact</strong>: <a href="mailto:aswin.inbox@proton.me">aswin.inbox@proton.me</a> · <a href="https://wa.me/971503632130" target="_blank" rel="noopener">WhatsApp</a></p>
+        <p><strong>What I do</strong>: Portfolio sites, landing pages, small studio websites, motion/branding showcases.</p>
+      </div>
+
+      <!-- Optional: small work list -->
+      <section style="margin-top:28px">
+        <h2 style="margin-bottom:8px">Selected work</h2>
+        <ul style="color:var(--muted)">
+          <li>Project One — short description</li>
+          <li>Project Two — short description</li>
+          <li>Project Three — short description</li>
+        </ul>
+      </section>
+    </main>
+    <footer style="margin-top:40px;color:var(--muted)">© <span id="year"></span> Aswin — The NextFrame</footer>
+  </div>
+
+  <script>document.getElementById('year').textContent = new Date().getFullYear()</script>
+</body>
+</html>

@@ -3,135 +3,319 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Contact — The NextFrame</title>
-  <meta name="description" content="Get in touch with Aswin at The NextFrame. WhatsApp, email or use the contact form." />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <title>NextFrame — Aswin</title>
+  <meta name="description" content="NextFrame — Crafting stories, frame by frame. Portfolio site for Aswin." />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap" rel="stylesheet">
   <style>
-    :root{--bg:#05060a;--panel:#0b0b0f;--muted:#98a0b3;--accent1:#7b2ff7;--accent2:#f107a3;--glass:rgba(255,255,255,0.03);--radius:14px}
+    :root{
+      --page-bg: #07060a;
+      --outer-muted: #9aa3b4;
+      --screen-bg-1: #06060a;
+      --screen-glow: linear-gradient(90deg, rgba(123,47,247,0.12), rgba(241,7,163,0.06));
+      --accent1: #7b2ff7;
+      --accent2: #f107a3;
+      --panel: rgba(255,255,255,0.03);
+      --radius: 18px;
+      --white: #ffffff;
+    }
     *{box-sizing:border-box}
-    body{margin:0;font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Arial;background:linear-gradient(180deg,#05060a,#03030a);color:#fff}
-    .wrap{max-width:1100px;margin:0 auto;padding:28px}
-    header{display:flex;justify-content:space-between;align-items:center;padding:18px 0}
-    .brand h1{margin:0;font-size:20px}
-    .brand p{margin:0;color:var(--muted);font-size:13px}
+    html,body{height:100%;margin:0;background:
+      radial-gradient(1000px 500px at 10% 10%, rgba(123,47,247,0.06), transparent 8%),
+      radial-gradient(900px 400px at 90% 90%, rgba(241,7,163,0.03), transparent 6%),
+      var(--page-bg);
+      font-family: 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial;
+      color:var(--white)
+    }
 
-    .hero{background:linear-gradient(180deg, rgba(125,35,255,0.04), transparent);padding:48px;border-radius:12px}
-    .hero h2{margin:0;font-size:36px}
-    .hero .crumb{color:var(--muted);margin-top:8px}
+    /* Header outside the screen */
+    .page-header{
+      max-width:1300px;
+      margin:28px auto 18px;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:16px;
+      padding:0 20px;
+    }
+    .brand{
+      display:flex;
+      flex-direction:column;
+      gap:6px;
+    }
+    .brand .title{
+      font-weight:800;
+      font-size:22px;
+      letter-spacing:0.6px;
+    }
+    .brand .subtitle{
+      color:var(--outer-muted);
+      font-size:13px;
+      margin-top:2px;
+    }
+    nav.header-nav a{
+      color:var(--outer-muted);
+      text-decoration:none;
+      padding:8px 12px;
+      border-radius:10px;
+      font-weight:600;
+      font-size:14px;
+    }
+    nav.header-nav a:hover{color:var(--white); background: rgba(255,255,255,0.02)}
 
-    .map{margin-top:18px;border-radius:8px;overflow:hidden;height:240px;background:#111}
-    .content{display:grid;grid-template-columns:1fr 420px;gap:28px;margin-top:24px}
+    /* Desktop "monitor" container */
+    .desktop-wrap{
+      max-width:1300px;
+      margin: 18px auto 60px;
+      padding: 0 20px;
+      display:flex;
+      justify-content:center;
+    }
+    .desktop-frame{
+      width:1100px;               /* big desktop size */
+      max-width:calc(100% - 40px);
+      border-radius:22px;
+      position:relative;
+      box-shadow: 0 30px 80px rgba(2,6,23,0.6), 0 6px 20px rgba(0,0,0,0.4);
+      background:
+        linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
+      border: 1px solid rgba(255,255,255,0.03);
+      overflow:hidden;
+    }
 
-    /* left - form */
-    .card{background:var(--panel);padding:22px;border-radius:12px;box-shadow:0 10px 30px rgba(0,0,0,0.5)}
-    form label{display:block;font-size: 16px;color:var(--muted);margin-bottom:8px}
-    input,textarea{width:100%;padding:12px;border-radius:8px;border:none;background:#07070a;color:#fff;margin-bottom:12px}
-    textarea{min-height:140px}
-    .row{display:flex;gap:12px}
-    .btn{display:inline-block;padding:10px 14px;border-radius:10px;border:0;background:linear-gradient(90deg,var(--accent1),var(--accent2));color:#fff;font-weight:700;cursor:pointer}
-    .btn.ghost{background:transparent;border:1px solid rgba(255,255,255,0.06)}
+    /* top bezel / speaker look */
+    .desktop-frame::before{
+      content:"";
+      position:absolute;
+      left:50%;
+      transform:translateX(-50%);
+      top:10px;
+      width:120px;
+      height:8px;
+      border-radius:6px;
+      background: rgba(255,255,255,0.03);
+      filter: blur(.2px);
+      z-index:5;
+    }
 
-    /* right - contact info */
-    .info h4{margin:0 0 8px}
-    .meta{color:var(--muted);font-size: 14px;margin-bottom:18px}
-    .info .line{display:flex;gap:12px;align-items:flex-start;margin-bottom:12px}
-    .icon{width:34px;height:34px;border-radius:8px;background:rgba(255,255,255,0.02);display:inline-flex;align-items:center;justify-content:center;color:var(--muted)}
-    .footnote{color:var(--muted);font-size: 14px;margin-top:8px}
+    /* inner "screen" area — colorful */
+    .screen{
+      padding:34px 46px;
+      background:
+        linear-gradient(180deg, rgba(12,10,15,0.8), rgba(6,6,10,0.85)),
+        var(--screen-glow);
+      min-height:620px;
+      display:block;
+    }
 
-    footer{margin-top:40px;padding:28px 0;color:var(--muted);text-align:center}
+    /* layout inside screen */
+    .screen-grid{
+      display:grid;
+      grid-template-columns: 1fr 380px;
+      gap:36px;
+      align-items:start;
+    }
 
-    @media (max-width:980px){.content{grid-template-columns:1fr}.hero h2{font-size:28px}.map{height:200px}}
+    /* Hero */
+    .eyebrow{
+      display:inline-block;
+      background:rgba(255,255,255,0.02);
+      padding:8px 12px;
+      border-radius:999px;
+      color:var(--outer-muted);
+      font-size:14px;
+      margin-bottom:14px;
+    }
+    .hero-title{
+      font-size:56px;
+      line-height:1.02;
+      margin:8px 0 12px;
+      font-weight:800;
+      letter-spacing:-0.6px;
+    }
+    .hero-lead{
+      color:var(--outer-muted);
+      max-width:60ch;
+      font-size:18px;
+      margin-bottom:20px;
+    }
+    .cta-row{display:flex;gap:14px;margin-top:18px}
+    .btn{
+      display:inline-flex;align-items:center;gap:10px;padding:12px 18px;border-radius:12px;border:0;
+      font-weight:700;text-decoration:none;color:var(--white);
+      cursor:pointer;
+      background:linear-gradient(90deg,var(--accent1),var(--accent2));
+      box-shadow: 0 6px 22px rgba(123,47,247,0.12);
+    }
+    .btn.ghost{background:transparent;border:1px solid rgba(255,255,255,0.04);color:var(--outer-muted)}
+
+    /* Projects cards */
+    .projects{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:32px}
+    .project{background:var(--panel);padding:20px;border-radius:12px;color:var(--white);box-shadow:0 8px 24px rgba(0,0,0,0.45)}
+    .project h4{margin:0 0 8px;font-size:16px}
+    .project p{margin:0;color:var(--outer-muted);font-size:14px}
+
+    /* right column card */
+    .card{
+      background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
+      padding:22px;border-radius:12px;color:var(--white);
+      border:1px solid rgba(255,255,255,0.02);
+    }
+    .card .meta{color:var(--outer-muted);font-size:14px;margin-bottom:12px}
+    .contact-links{display:flex;flex-direction:column;gap:10px}
+
+    /* selected-work area (full width) */
+    .selected-work{
+      margin-top:40px;
+      padding:20px;
+      background: linear-gradient(180deg, rgba(255,255,255,0.01), rgba(255,255,255,0.00));
+      border-radius:12px;
+      color:var(--outer-muted);
+    }
+
+    /* contact form inside screen bottom */
+    .contact-form{display:flex;flex-direction:column;gap:12px;margin-top:30px}
+    input,textarea{background:rgba(0,0,0,0.35);border:1px solid rgba(255,255,255,0.04);padding:12px;border-radius:10px;color:var(--white);outline:none}
+    textarea{min-height:120px;resize:vertical}
+
+    /* footer inside screen */
+    .screen-footer{margin-top:34px;color:var(--outer-muted);font-size:14px;text-align:center;padding-bottom:8px}
+
+    /* Desktop frame bottom "stand" */
+    .desktop-stand{
+      height:24px;
+      background:transparent;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      margin-top:10px;
+    }
+
+    /* responsiveness */
+    @media (max-width:1200px){
+      .desktop-frame{width:960px}
+      .hero-title{font-size:46px}
+    }
+    @media (max-width:980px){
+      .desktop-frame{width:calc(100% - 40px)}
+      .screen-grid{grid-template-columns:1fr}
+      .projects{grid-template-columns:repeat(2,1fr)}
+      .hero-title{font-size:34px}
+    }
+    @media (max-width:560px){
+      .projects{grid-template-columns:1fr}
+      .hero-title{font-size:28px}
+      .eyebrow{font-size:13px}
+    }
   </style>
 </head>
 <body>
-  <div class="wrap">
-    <header>
-      <div class="brand">
-        <h1>Aswin</h1>
-        <p>The NextFrame</p>
-      </div>
-      <nav>
-        <a href="index.html" style="color:var(--muted);text-decoration:none">Home</a>
-      </nav>
-    </header>
+  <!-- header OUTSIDE the desktop "screen" -->
+  <div class="page-header">
+    <div class="brand">
+      <div class="title">NextFrame</div>
+      <div class="subtitle">Crafting stories, frame by frame — Aswin</div>
+    </div>
 
-    <main>
-      <section class="hero" aria-labelledby="contact-title">
-        <div class="crumb">Home / Contact</div>
-        <h2 id="contact-title">Contact Us</h2>
-        <p class="meta">Questions, briefs or a quick hello — reach me via WhatsApp or email, or use the form below and I’ll get back ASAP.</p>
-        <div class="map" aria-hidden="true">
-          <!-- Google Maps iframe (replace src if you want an exact place) -->
-          <iframe
-            title="Map — Abu Dhabi"
-            width="100%"
-            height="100%"
-            frameborder="0"
-            style="border:0"
-            loading="lazy"
-            referrerpolicy="no-referrer-when-downgrade"
-            src="https://www.google.com/maps?q=Abudhabi&output=embed"></iframe>
-        </div>
-      </section>
+    <nav class="header-nav" aria-label="Main navigation">
+      <a href="index.html">Home</a>
+      <a href="about.html">About & Work</a>
+      <a href="contact.html">Contact</a>
+    </nav>
+  </div>
 
-      <div class="content">
-        <div>
-          <div class="card">
-            <h3 style="margin-top:0">Get In Touch</h3>
-            <p class="meta">Prefer WhatsApp or Email — both work. I usually reply on WhatsApp first.</p>
+  <!-- big desktop frame centered -->
+  <div class="desktop-wrap" role="main">
+    <div class="desktop-frame" aria-hidden="false">
+      <div class="screen" role="region" aria-label="Desktop screen content">
+        <div class="screen-grid">
 
-            <form id="contactForm" onsubmit="handleSubmit(event)">
-              <label for="name">Your Name</label>
-              <input id="name" name="name" placeholder="Your name" required />
+          <!-- Left: hero + projects -->
+          <div>
+            <span class="eyebrow">Crafting stories, frame by frame</span>
+            <h1 class="hero-title">Visual narratives & focused portfolios for creators</h1>
+            <p class="hero-lead">I design focused portfolio websites — clean, fast, and crafted with purpose. I help creators and small studios present work with clarity and rhythm.</p>
 
-              <label for="email">Your Email</label>
-              <input id="email" name="email" type="email" placeholder="you@example.com" required />
+            <div class="cta-row">
+              <a class="btn" href="#work">See work</a>
+              <a class="btn ghost" href="contact.html">Contact</a>
+            </div>
 
-              <label for="message">Your Message (optional)</label>
-              <textarea id="message" name="message" placeholder="Tell me a little about the project..."></textarea>
+            <div class="projects" id="work" aria-label="Selected projects">
+              <article class="project">
+                <h4>Project One</h4>
+                <p>Short description — a visual piece or video sample.</p>
+              </article>
+              <article class="project">
+                <h4>Project Two</h4>
+                <p>Short description — a branding or motion sample.</p>
+              </article>
+              <article class="project">
+                <h4>Project Three</h4>
+                <p>Short description — another selected frame or clip.</p>
+              </article>
+            </div>
 
-              <div class="row">
-                <button class="btn" type="submit">Send Message</button>
-                <a class="btn ghost" href="https://wa.me/971503632130?text=Hi%20Aswin%2C%20I%20would%20like%20to%20talk" target="_blank" rel="noopener">Open WhatsApp</a>
+            <div class="selected-work" aria-hidden="false">
+              <strong>Selected Work</strong>
+              <p style="margin:8px 0 0">A curated selection of projects and frames. Replace these cards with your actual projects — images, video embeds, or links.</p>
+            </div>
+
+            <!-- contact form mini (optional) inside the same screen if you want -->
+            <div class="contact-form" aria-label="Quick contact">
+              <input id="mini-name" placeholder="Your name">
+              <input id="mini-email" type="email" placeholder="Email">
+              <textarea id="mini-message" placeholder="Message"></textarea>
+              <div style="display:flex;gap:12px">
+                <button class="btn" onclick="openContact()">Open contact</button>
+                <a class="btn ghost" href="contact.html">Full contact page</a>
               </div>
-            </form>
-
-            <p id="formStatus" class="footnote" aria-live="polite"></p>
+            </div>
           </div>
+
+          <!-- Right: about/contact card -->
+          <aside class="card" aria-labelledby="about-card-title">
+            <div id="about-card-title" style="font-weight:700;font-size:18px;margin-bottom:8px">About</div>
+            <div class="meta">Hi — I'm Aswin. I craft visual stories and frame-by-frame moments for creators and brands. I focus on clarity, rhythm and a purposeful final frame.</div>
+
+            <div style="height:14px"></div>
+
+            <div style="font-weight:700;margin-bottom:8px">Get in touch</div>
+            <div class="contact-links">
+              <a class="btn" href="https://wa.me/971503632130" target="_blank" rel="noopener">WhatsApp</a>
+              <a class="btn ghost" href="mailto:aswin.inbox@proton.me">Email</a>
+            </div>
+
+            <div style="height:16px"></div>
+
+            <div style="font-weight:700;margin-bottom:8px">Quick rates</div>
+            <div class="meta">
+              • Portfolio / Personal site — AED 150<br>
+              • Landing page — AED 200<br>
+              • Maintenance & updates — AED 50 / month
+            </div>
+          </aside>
+
         </div>
 
-        <aside class="card info" aria-labelledby="cont-details">
-          <h4 id="cont-details">Contact Details</h4>
-          <p class="meta">Reach out directly — WhatsApp for quick replies, email for proposals and attachments.</p>
-
-          <div class="line"><div class="icon" aria-hidden>📱</div><div><strong>WhatsApp</strong><div class="muted">+971 50 363 2130</div></div></div>
-          <div class="line"><div class="icon" aria-hidden>✉️</div><div><strong>Email</strong><div class="muted">aswin.inbox@proton.me</div></div></div>
-          
-          <div style="height:12px"></div>
-          <div class="footnote">If you want me to call — send your number and a short note and I’ll reply with a time.</div>
-        </aside>
+        <div class="screen-footer">
+          © <span id="year">2025</span> Aswin — The NextFrame • Made with purpose
+        </div>
       </div>
 
-    </main>
-
-    <footer>
-      <div>© <span id="year"></span> Aswin — The NextFrame</div>
-    </footer>
+      <!-- optional stand under the monitor to make it look like a desktop -->
+      <div class="desktop-stand" role="presentation" aria-hidden="true">
+        <div style="width:160px;height:8px;border-radius:6px;background:rgba(255,255,255,0.02)"></div>
+      </div>
+    </div>
   </div>
 
   <script>
+    // year
     document.getElementById('year').textContent = new Date().getFullYear();
 
-    function handleSubmit(e){
-      e.preventDefault();
-      const name = encodeURIComponent(document.getElementById('name').value.trim());
-      const email = encodeURIComponent(document.getElementById('email').value.trim());
-      const msg = encodeURIComponent(document.getElementById('message').value.trim());
-      const text = `Name: ${name}%0AEmail: ${email}%0AMessage: ${msg}`;
-      // prefer WhatsApp to send the message (fast for you)
-      const wa = `https://wa.me/971503632130?text=${text}`;
-      window.open(wa,'_blank');
-      document.getElementById('formStatus').textContent = 'Opening WhatsApp — if it does not open, please email aswin.inbox@proton.me';
+    function openContact(){
+      // quick shortcut to open contact page or scroll
+      window.location.href = 'contact.html';
     }
   </script>
 </body>
