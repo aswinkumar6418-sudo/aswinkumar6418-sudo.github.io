@@ -3,25 +3,81 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Thanks — The NextFrame</title>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <title>Thanks — NextFrame</title>
+  <meta name="description" content="Thank you for contacting Aswin at The NextFrame." />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap" rel="stylesheet">
   <style>
-    :root{--bg:#05060a;--muted:#98a0b3;--accent1:#7b2ff7;--accent2:#f107a3}
-    body{margin:0;font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Arial;background:linear-gradient(180deg,#05060a,#03030a);color:#fff;min-height:100vh;display:flex;align-items:center;justify-content:center}
-    .card{max-width:820px;padding:40px;border-radius:14px;background:rgba(255,255,255,0.02);text-align:center}
-    h1{margin:0 0 12px;font-size:28px}
-    p{color:var(--muted);margin:0 0 18px}
-    a.btn{display:inline-block;padding:10px 16px;border-radius:10px;background:linear-gradient(90deg,var(--accent1),var(--accent2));color:#fff;text-decoration:none;font-weight:600}
+    :root{
+      --bg-dark:#07060a;
+      --muted:#9fa4b8;
+      --accent1:#7b2ff7;
+      --accent2:#f107a3;
+      --radius:14px;
+      --easing:cubic-bezier(.2,.9,.3,1);
+      --white:#fff;
+    }
+    *{box-sizing:border-box}
+    html,body{margin:0;height:100%;
+      background:linear-gradient(180deg,#05050a,#12041e);
+      font-family:'Inter',system-ui,-apple-system,'Segoe UI',Roboto,Arial;
+      color:var(--white);-webkit-font-smoothing:antialiased;
+    }
+
+    /* Loader */
+    #loading{
+      position:fixed;inset:0;
+      display:flex;align-items:center;justify-content:center;
+      background:linear-gradient(180deg, rgba(2,6,23,0.98), rgba(2,6,12,0.98));
+      z-index:9999;backdrop-filter:blur(3px);
+      transition:opacity .35s var(--easing);
+    }
+    #loader{display:flex;flex-direction:column;align-items:center;gap:6px}
+    .loader-logo{font-weight:800;font-size:16px;background:linear-gradient(90deg,var(--accent1),var(--accent2));-webkit-background-clip:text;color:transparent}
+    .loader-egg{font-size:11px;color:rgba(242,242,242,0.14);opacity:0;transform:translateY(6px);transition:opacity .14s,transform .18s}
+    #loading.showEgg .loader-egg{opacity:1;transform:none}
+
+    /* Page layout */
+    .page{max-width:1100px;margin:0 auto;padding:40px;text-align:center;display:flex;flex-direction:column;align-items:center;justify-content:center;min-height:100vh;}
+    h1{font-size:48px;font-weight:900;margin:0;background:linear-gradient(90deg,var(--accent1),var(--accent2));-webkit-background-clip:text;color:transparent;}
+    p{color:var(--muted);font-size:18px;max-width:600px;margin:16px auto 30px;}
+    .btn{
+      display:inline-flex;align-items:center;justify-content:center;gap:10px;
+      padding:14px 24px;border-radius:12px;font-weight:800;font-size:16px;text-decoration:none;
+      color:var(--white);background:linear-gradient(90deg,var(--accent1),var(--accent2));
+      box-shadow:0 12px 36px rgba(123,47,247,0.16);
+      transition:transform .18s var(--easing),box-shadow .18s var(--easing);
+    }
+    .btn:hover{transform:translateY(-3px);box-shadow:0 20px 46px rgba(123,47,247,0.25);}
+    footer{margin-top:60px;color:var(--muted);font-size:13px;text-align:center;}
   </style>
 </head>
 <body>
-  <div class="card">
-    <h1>Thanks — I got your message</h1>
-    <p>I’ll reply on WhatsApp or email shortly. If this is urgent, open WhatsApp now.</p>
-    <p style="margin-top:18px">
-      <a class="btn" href="https://wa.me/971503632130?text=Hi%20Aswin%2C%20I%20just%20submitted%20the%20contact%20form" target="_blank" rel="noopener">Open WhatsApp</a>
-      <a class="btn" href="/" style="margin-left:10px;background:transparent;border:1px solid rgba(255,255,255,0.06)">Back to home</a>
-    </p>
+  <!-- Loader -->
+  <div id="loading" class="showEgg">
+    <div id="loader">
+      <div class="loader-logo">The NextFrame</div>
+      <div class="loader-egg">Made with purpose — for K</div>
+    </div>
   </div>
+
+  <div class="page">
+    <h1>Thank you!</h1>
+    <p>Your message has been received successfully. I’ll get back to you as soon as possible.</p>
+    <a class="btn" href="index.html">← Back to Home</a>
+    <footer>© <span id="year"></span> Aswin — The NextFrame • Made with purpose</footer>
+  </div>
+
+  <script>
+    // loader
+    document.addEventListener('DOMContentLoaded', () => {
+      const loader = document.getElementById('loading');
+      setTimeout(() => {
+        loader.style.opacity='0';
+        loader.style.pointerEvents='none';
+        setTimeout(()=>loader.remove(),400);
+      },1000);
+      document.getElementById('year').textContent=new Date().getFullYear();
+    });
+  </script>
 </body>
 </html>

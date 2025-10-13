@@ -3,190 +3,244 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>NextFrame — Crafting stories, frame by frame — Aswin</title>
-  <meta name="description" content="Contact Aswin at The NextFrame." />
+  <title>Contact — NextFrame — Crafting stories, frame by frame — Aswin</title>
+  <meta name="description" content="Contact Aswin at The NextFrame. Use the form or email." />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap" rel="stylesheet">
-
   <style>
     :root{
-      /* --- Cinematic Noir Theme --- */
-      --page-bg-1:#05050a;
-      --page-bg-2:#12041e;
-      --muted:#9fa4b8;
-      --accent1:#8e2de2;
-      --accent2:#4a00e0;
-      --wa1:#128C7E;
-      --wa2:#25D366;
-      --white:#f2f2f2;
+      --bg-dark:#07060a;
+      --panel-top: rgba(255,255,255,0.035);
+      --panel-bottom: rgba(255,255,255,0.01);
+      --muted:#98a0b3;
+      --white:#ffffff;
+      --accent-purple-1:#7b2ff7;
+      --accent-purple-2:#f107a3;
+      --accent-green-1:#18b26b;
+      --accent-green-2:#60d886;
       --radius:14px;
-      --shadow:0 25px 60px rgba(0,0,0,0.6);
+      --max-width:1200px;
+      --btn-h:48px;
+      --easing:cubic-bezier(.2,.9,.3,1);
     }
-
     *{box-sizing:border-box}
     html,body{
-      margin:0;height:100%;
-      background:linear-gradient(180deg,var(--page-bg-1),var(--page-bg-2));
-      font-family:'Inter',system-ui,-apple-system,'Segoe UI',Roboto,Arial;
-      color:var(--white);
-      -webkit-font-smoothing:antialiased;
+      height:100%;margin:0;
+      background:
+        radial-gradient(800px 340px at 10% 20%, rgba(123,47,247,0.04), transparent 8%),
+        linear-gradient(180deg,var(--bg-dark), #03030a);
+      font-family:Inter, system-ui, -apple-system, 'Segoe UI', Roboto, Arial;
+      color:var(--white);-webkit-font-smoothing:antialiased;
     }
 
     a{color:inherit;text-decoration:none}
-    .container{max-width:1100px;margin:0 auto;padding:32px}
+    .page{max-width:var(--max-width);margin:28px auto;padding:20px;position:relative}
+
+    /* LOADER (1s egg) */
+    #loading {
+      position:fixed; inset:0;
+      display:flex; align-items:center; justify-content:center;
+      background: linear-gradient(180deg, rgba(2,6,23,0.98), rgba(2,6,12,0.98));
+      z-index:9999; backdrop-filter: blur(3px);
+      transition: opacity 320ms var(--easing);
+    }
+    #loader { display:flex; flex-direction:column; align-items:center; gap:8px; }
+    .loader-logo { font-weight:800; font-size:16px; background:linear-gradient(90deg,var(--accent-purple-1),var(--accent-purple-2)); -webkit-background-clip:text; color:transparent; }
+    .loader-egg { font-size:12px; color: rgba(242,242,242,0.14); opacity:0; transform:translateY(6px); transition:opacity 160ms linear, transform 160ms linear; }
+    #loading.showEgg .loader-egg { opacity:1; transform:none; }
 
     /* header */
-    .page-head{display:flex;align-items:center;justify-content:space-between;margin-bottom:20px}
-    .site-title{font-weight:900;font-size:38px;letter-spacing:-.5px;margin:0}
-    .site-sub{color:var(--muted);font-size:14px;margin-top:6px}
-    .back{
-      display:inline-flex;align-items:center;gap:8px;
-      padding:10px 16px;border-radius:12px;
-      border:1px solid rgba(255,255,255,0.05);
-      background:rgba(255,255,255,0.02);
-      color:var(--muted);font-weight:700;font-size:14px;
-      transition:.25s ease;
+    header{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:18px}
+    .brand{display:flex;flex-direction:column;gap:6px}
+    .brand .title{font-weight:900;font-size:28px;line-height:1;margin:0}
+    .brand .subtitle{color:var(--muted);font-size:13px;margin-top:4px}
+
+    /* Home button top-right */
+    .home-wrap{position:absolute; right:24px; top:26px}
+    .home-btn{
+      display:inline-flex;align-items:center;gap:10px;padding:10px 18px;border-radius:12px;
+      background: linear-gradient(90deg,var(--accent-purple-1),var(--accent-purple-2));
+      color:#fff;font-weight:800;border:0;cursor:pointer;box-shadow:0 12px 36px rgba(123,47,247,0.16);
+      transition:transform .12s var(--easing), box-shadow .12s var(--easing);
+      text-decoration:none;
+      min-height:var(--btn-h);
     }
-    .back:hover{background:rgba(255,255,255,0.06);color:var(--white)}
+    .home-btn:hover{transform:translateY(-3px);box-shadow:0 22px 48px rgba(123,47,247,0.22)}
+    .home-btn:focus{outline:3px solid rgba(142,45,226,0.12);outline-offset:3px}
 
-    /* layout */
-    .wrap{display:grid;grid-template-columns:1fr 420px;gap:32px}
-    @media(max-width:980px){.wrap{grid-template-columns:1fr}}
-
-    .card{
-      background:rgba(255,255,255,0.03);
-      border:1px solid rgba(255,255,255,0.05);
-      border-radius:var(--radius);
-      padding:26px;
-      box-shadow:var(--shadow);
+    main{display:block}
+    .panel{
+      background: linear-gradient(180deg,var(--panel-top),var(--panel-bottom));
+      border-radius:var(--radius);padding:28px;border:1px solid rgba(255,255,255,0.04);
+      box-shadow: 0 18px 48px rgba(0,0,0,0.55);
     }
 
-    h2{margin:0 0 10px 0;font-size:24px}
+    .panel h2{margin:0 0 8px;font-size:22px}
     .muted{color:var(--muted)}
 
-    /* form */
-    label{display:block;color:var(--muted);margin-bottom:6px;font-size:14px}
+    label{display:block;color:var(--muted);font-size:14px;margin:10px 0 6px}
     input,textarea{
-      width:100%;padding:14px 12px;margin-bottom:12px;
-      border-radius:10px;
-      border:1px solid rgba(255,255,255,0.08);
-      background:rgba(0,0,0,0.45);
-      color:var(--white);font-size:15px;
-      outline:none;transition:.25s ease;
+      width:100%;padding:14px 16px;border-radius:12px;border:1px solid rgba(255,255,255,0.10);
+      background:rgba(255,255,255,0.04);color:var(--white);font-size:15px;outline:none;
+      transition:box-shadow .18s var(--easing), border-color .18s var(--easing), background .18s var(--easing);
+      box-shadow: inset 0 2px 0 rgba(0,0,0,0.30);
     }
-    input:focus,textarea:focus{
-      border-color:var(--accent1);
-      box-shadow:0 0 0 3px rgba(142,45,226,0.25);
+    input::placeholder, textarea::placeholder{color:rgba(255,255,255,0.56)}
+    input:focus, textarea:focus{
+      background:rgba(255,255,255,0.07);
+      border-color:var(--accent-purple-1);
+      box-shadow:0 0 0 6px rgba(123,47,247,0.06);
     }
-    textarea{min-height:160px;resize:vertical}
 
-    /* buttons */
-    .actions-row{display:flex;gap:14px;flex-wrap:wrap;margin-top:14px}
+    /* larger typing area to be clearly visible */
+    textarea{min-height:240px;resize:vertical;line-height:1.6;padding:18px;font-size:15px;border-radius:12px}
+
+    .actions{display:flex;gap:12px;flex-wrap:wrap;margin-top:16px;align-items:center}
     .btn{
-      display:inline-flex;align-items:center;justify-content:center;
-      padding:14px 24px;min-width:220px;
-      border:none;border-radius:12px;
-      font-weight:700;font-size:15px;
-      color:var(--white);cursor:pointer;
-      transition:transform .25s ease,box-shadow .25s ease;
-      text-decoration:none;
+      display:inline-flex;align-items:center;justify-content:center;gap:10px;padding:0 18px;border-radius:12px;font-weight:800;
+      font-size:15px;cursor:pointer;text-decoration:none;color:var(--white);border:0;min-height:var(--btn-h);
+      transition:transform .12s var(--easing),box-shadow .12s var(--easing),opacity .12s var(--easing);
+      min-width:160px;
     }
+    .btn:active{transform:translateY(1px)}
     .btn.send{
-      background:linear-gradient(90deg,var(--accent1),var(--accent2));
-      box-shadow:0 8px 26px rgba(142,45,226,0.25);
+      background:linear-gradient(90deg,var(--accent-purple-1),var(--accent-purple-2));
+      box-shadow:0 12px 36px rgba(123,47,247,0.12);
     }
-    .btn.whatsapp{
-      background:linear-gradient(90deg,var(--wa1),var(--wa2));
-      box-shadow:0 8px 26px rgba(37,211,102,0.25);
+    .btn.mail{
+      background: linear-gradient(90deg,var(--accent-green-1),var(--accent-green-2));
+      box-shadow:0 10px 30px rgba(24,178,107,0.10);
+      color:#07120f;font-weight:800;
     }
-    .btn:hover{transform:translateY(-2px);box-shadow:0 10px 32px rgba(0,0,0,0.5)}
-    @media(max-width:560px){.btn{flex:1 1 100%;min-width:0}}
+    .btn:focus{outline:3px solid rgba(142,45,226,0.08);outline-offset:3px}
 
-    .foot{color:var(--muted);font-size:13px;margin-top:12px;text-align:left}
+    .status{margin-top:12px;font-size:14px;color:var(--muted)}
 
-    .stack{display:flex;flex-direction:column;gap:10px;margin-top:10px}
-    .rates{color:var(--muted);margin-top:14px;font-size:14px;line-height:1.5}
+    footer{margin-top:22px;color:var(--muted);text-align:center;font-size:13px}
 
+    @media (max-width:980px){
+      .home-wrap{position:static;margin-bottom:10px;display:flex;justify-content:flex-end}
+      header{padding-right:12px}
+      .panel{padding:20px}
+      textarea{min-height:200px}
+      .btn{min-width:140px}
+    }
   </style>
 </head>
 <body>
-  <div class="container">
-    <header class="page-head">
-      <div>
-        <div class="site-title">NextFrame</div>
-        <div class="site-sub">Crafting stories, frame by frame — Aswin</div>
+  <!-- loader -->
+  <div id="loading" class="showEgg" aria-hidden="false" role="status" aria-live="polite">
+    <div id="loader" aria-hidden="false">
+      <div class="loader-logo">The NextFrame</div>
+      <div class="loader-egg">Made with purpose — for K</div>
+    </div>
+  </div>
+
+  <div class="page">
+    <header role="banner">
+      <div class="brand" aria-hidden="false">
+        <div class="title">NextFrame</div>
+        <div class="subtitle">Crafting stories, frame by frame — Aswin</div>
       </div>
-      <a class="back" href="index.html">← Home</a>
+
+      <!-- Home button aligned top-right -->
+      <div class="home-wrap">
+        <a href="index.html" class="home-btn" aria-label="Home">Home</a>
+      </div>
     </header>
 
-    <main class="wrap">
-      <div class="card">
-        <h2>Contact — Send a message</h2>
-        <p class="muted">Prefer WhatsApp? Use the green button — or send a message below.</p>
+    <main>
+      <section class="panel" aria-labelledby="contact-heading">
+        <h2 id="contact-heading">Contact — Send a message</h2>
+        <p class="muted" style="margin-top:0">Prefer email or use the form below — I’ll reply as soon as I can.</p>
 
-        <form id="contactForm">
+        <form id="contactForm" novalidate>
           <label for="name">Your name</label>
-          <input id="name" name="name" required>
+          <input id="name" name="name" type="text" placeholder="Your name" required autocomplete="name">
+
           <label for="email">Your email</label>
-          <input id="email" name="email" type="email" required>
+          <input id="email" name="email" type="email" placeholder="you@example.com" required autocomplete="email">
+
           <label for="message">Message</label>
-          <textarea id="message" name="message" required></textarea>
-          <input type="text" name="_gotcha" style="display:none" autocomplete="off">
+          <textarea id="message" name="message" placeholder="Tell me a little about the project..." rows="6"></textarea>
+
+          <!-- honeypot anti-spam -->
+          <input type="text" name="_gotcha" id="_gotcha" style="position:absolute;left:-9999px;top:auto;opacity:0" autocomplete="off" tabindex="-1">
+
+          <!-- Formspree subject -->
           <input type="hidden" name="_subject" value="New message from NextFrame website">
 
-          <div class="actions-row">
-            <button class="btn send" type="submit">Send message</button>
-            <a class="btn whatsapp" href="https://wa.me/971503632130" target="_blank" rel="noopener">Open WhatsApp</a>
+          <div class="actions" role="group" aria-label="Send options">
+            <button class="btn send" type="submit" id="sendBtn">Send message</button>
+
+            <!-- Email CTA (green) -->
+            <a class="btn mail" href="mailto:aswin.inbox@proton.me">Email</a>
           </div>
 
-          <p id="status" class="foot" aria-live="polite"></p>
+          <div id="formStatus" class="status" role="status" aria-live="polite"></div>
         </form>
-      </div>
+      </section>
 
-      <aside class="card">
-        <h3 style="margin-top:0;margin-bottom:8px">Contact</h3>
-        <div class="muted">WhatsApp for quick replies; email for proposals and attachments.</div>
-        <div class="stack">
-          <a class="btn whatsapp" href="https://wa.me/971503632130" target="_blank" rel="noopener">WhatsApp</a>
-          <a class="btn send" href="mailto:aswin.inbox@proton.me">Email</a>
-        </div>
-        <div class="rates">
-          <div style="font-weight:700;margin-top:16px">Rates (quick)</div>
-          • Portfolio / Personal site — AED 150<br>
-          • Landing page — AED 200<br>
-          • Maintenance & updates — AED 50 / month
-        </div>
-      </aside>
+      <footer>
+        © <span id="year"></span> Aswin — The NextFrame • Made with purpose
+      </footer>
     </main>
-
-    <footer style="margin-top:32px;text-align:center;color:var(--muted);font-size:13px">
-      © <span id="year"></span> Aswin — The NextFrame • Made with purpose
-    </footer>
   </div>
 
   <script>
-    document.getElementById('year').textContent=new Date().getFullYear();
-    const ENDPOINT='https://formspree.io/f/xrbyobnp';
-    document.getElementById('contactForm').addEventListener('submit',async e=>{
+    // Formspree endpoint
+    const FORMSPREE = 'https://formspree.io/f/xrbyobnp';
+    const form = document.getElementById('contactForm');
+    const sendBtn = document.getElementById('sendBtn');
+    const loader = document.getElementById('loading');
+
+    // Loader animation
+    (function showLoader(){
+      const prefersReduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      const delay = prefersReduce ? 50 : 1000;
+      window.addEventListener('load', () => {
+        setTimeout(() => {
+          if (!loader) return;
+          loader.style.opacity = '0';
+          loader.style.pointerEvents = 'none';
+          loader.setAttribute('aria-hidden','true');
+          setTimeout(()=> loader.remove(), 420);
+        }, delay);
+      });
+    })();
+
+    form.addEventListener('submit', async (e) => {
       e.preventDefault();
-      const status=document.getElementById('status');
-      status.textContent='Sending…';
-      const data=new FormData(e.target);
-      if(data.get('_gotcha'))return;
-      try{
-        const res=await fetch(ENDPOINT,{method:'POST',headers:{Accept:'application/json'},body:data});
-        if(res.ok){
-          status.style.color='limegreen';
-          status.textContent='Thanks — I received your message.';
-          e.target.reset();
-        }else{
-          status.style.color='tomato';
-          status.textContent='Submission failed. Try again or use WhatsApp.';
+      const fd = new FormData(form);
+
+      // Honeypot
+      if (fd.get('_gotcha')) return;
+
+      sendBtn.disabled = true;
+      sendBtn.textContent = 'Sending…';
+
+      try {
+        const res = await fetch(FORMSPREE, {
+          method: 'POST',
+          headers: { 'Accept': 'application/json' },
+          body: fd
+        });
+
+        if (res.ok) {
+          // Redirect to thank-you page
+          window.location.href = "thanks.html";
+        } else {
+          // show a helpful alert (keeps UX simple)
+          alert('Submission failed. Please try again or email aswin.inbox@proton.me');
         }
-      }catch{
-        status.style.color='tomato';
-        status.textContent='Network error. Please try again.';
+      } catch (err) {
+        alert('Network error. Please try again or email aswin.inbox@proton.me');
+      } finally {
+        sendBtn.disabled = false;
+        sendBtn.textContent = 'Send message';
       }
     });
+
+    document.getElementById('year').textContent = new Date().getFullYear();
   </script>
 </body>
 </html>
