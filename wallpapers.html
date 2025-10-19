@@ -8,8 +8,8 @@
   <style>
     :root {
       --bg-dark:#05050a;
-      --accent-green-1:#18b26b;
-      --accent-green-2:#60d886;
+      --accent-green-1:#8e2de2; /* deep violet */
+      --accent-green-2:#a445b2; /* soft magenta */
       --muted:#98a0b3;
       --white:#fff;
       --card-radius:12px;
@@ -34,36 +34,64 @@
       -moz-osx-font-smoothing:grayscale;
     }
 
+    /* Home button in top right */
+    nav {
+      position: absolute;
+      top: 50px;
+      right: 10px;
+    }
+
+    .home-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 10px 18px;
+      border-radius: 12px;
+      background: linear-gradient(90deg, #8e2de2, #a445b2);
+      font-weight: 700;
+      color: #fff;
+      text-decoration: none;
+      border: none;
+      box-shadow: 0 6px 18px rgba(24,178,107,0.25);
+      transition: transform 0.2s var(--easing), box-shadow 0.2s var(--easing);
+    }
+
+    .home-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 10px 28px rgba(24,178,107,0.35);
+    }
+
     .wrap{
+      position: relative;
       max-width:var(--max-width);
       margin:40px auto;
-      padding:24px;
+      padding:80px 24px 24px;
       background:rgba(0,0,0,0.56);
       border-radius:16px;
       backdrop-filter:blur(8px);
     }
 
     h1{
-      margin:0 0 8px;
+      margin:0 0 8px; 
       font-size:30px;
       font-weight:800;
       text-align:center;
     }
-
+     
     .muted{
-      text-align:center;
+      text-align:center; 
       color:var(--muted);
       margin-bottom:20px;
       font-size:15px;
     }
-
-    .grid{
+    
+    .grid{ 
       display:grid;
       grid-template-columns:repeat(auto-fill,minmax(220px,1fr));
       gap:var(--gap);
       margin-top:12px;
     }
-
+        
     .card{
       background:linear-gradient(180deg,rgba(255,255,255,0.03),rgba(255,255,255,0.02));
       padding:var(--card-padding);
@@ -76,35 +104,33 @@
       flex-direction:column;
       align-items:stretch;
     }
-
+      
     .card:focus-within,
     .card:hover{
       transform:translateY(-6px);
       box-shadow:0 18px 40px rgba(0,0,0,0.55);
     }
-
-    /* image container for masking and hover scale */
+      
     .thumb {
       display:block;
       width:100%;
       height:var(--img-height-desktop);
       border-radius:10px;
       overflow:hidden;
-      position:relative;
+      position:relative; 
       background:linear-gradient(180deg, rgba(0,0,0,0.18), rgba(0,0,0,0.08));
     }
-
+      
     .thumb img{
       width:100%;
       height:100%;
       object-fit:cover;
       display:block;
-      transform:scale(1);
+      transform:scale(1);  
       transition:transform .6s var(--easing), filter .4s var(--easing);
       will-change: transform;
     }
-
-    /* subtle overlay and caption area */
+        
     .card-body{
       padding-top:10px;
       display:flex;
@@ -112,19 +138,19 @@
       gap:8px;
       align-items:center;
     }
-
+      
     .card-title{
       font-weight:700;
-      font-size:15px;
+      font-size:15px;   
       text-align:center;
       color:var(--white);
-    }
-
+    } 
+    
     .dl{
       display:block;
-      margin-top:4px;
+      margin-top:4px;  
       padding:8px 10px;
-      border-radius:10px;
+      border-radius:10px;  
       background:linear-gradient(90deg,var(--accent-green-1),var(--accent-green-2));
       color:#fff;
       text-decoration:none;
@@ -132,12 +158,14 @@
       text-align:center;
       font-size:14px;
       transition:transform .18s var(--easing), box-shadow .18s var(--easing), opacity .12s var(--easing);
-      width:86%;
+      width:86%;   
     }
 
-    .dl:hover{ transform:translateY(-2px); box-shadow:0 8px 22px rgba(24,178,107,0.28) }
-
-    /* Hover zoom effect on desktop pointer devices only */
+    .dl:hover{ 
+      transform:translateY(-2px); 
+      box-shadow:0 8px 22px rgba(24,178,107,0.28);
+    }
+     
     @media (hover: hover) and (pointer: fine) {
       .card:hover .thumb img,
       .card:focus-within .thumb img {
@@ -145,148 +173,145 @@
         filter:brightness(1.04);
       }
     }
-
-    /* Respect reduced motion */
+    
     @media (prefers-reduced-motion: reduce) {
       .thumb img{ transition:none !important; transform:none !important }
       .card, .dl { transition:none !important }
     }
-
+      
     footer{
       text-align:center;
       color:var(--muted);
       font-size:13px;
       margin-top:22px;
     }
-
+     
     @media (max-width:720px){
       .card img{height:var(--img-height-mobile)}
-      .wrap{padding:18px}
+      .wrap{padding:80px 18px 18px}
       h1{font-size:24px}
       .dl{width:92%}
     }
   </style>
 </head>
 <body>
+  <nav><a class="home-btn" href="index.html">Home</a></nav>
+
   <div class="wrap" role="main">
     <h1>Kali Wallpapers</h1>
     <p class="muted">Under KaliCartel.</p>
 
     <div class="grid" aria-live="polite">
-      <!-- 12 tiles (you can remove extra if you only need 10) -->
+      <!-- wallpaper cards -->
       <div class="card">
-        <a class="thumb" href="r.jpg" aria-label="Open Wallpaper 1"><img src="r.jpg" alt="NextFrame wallpaper 1"></a>
+        <a class="thumb" href="wallpapers/r.jpg"><img src="wallpapers/r.jpg" alt="NextFrame wallpaper 1"></a>
         <div class="card-body">
           <div class="card-title">NextFrame — Noir 01</div>
-          <a class="dl" href="r.jpg" download>Download</a>
+          <a class="dl" href="wallpapers/r.jpg" download>Download</a>
         </div>
       </div>
 
       <div class="card">
-        <a class="thumb" href="e.jpg" aria-label="Open Wallpaper 2"><img src="e.jpg" alt="NextFrame wallpaper 2"></a>
+        <a class="thumb" href="wallpapers/e.jpg"><img src="wallpapers/e.jpg" alt="NextFrame wallpaper 2"></a>
         <div class="card-body">
           <div class="card-title">NextFrame — Noir 02</div>
-          <a class="dl" href="e.jpg" download>Download</a>
+          <a class="dl" href="wallpapers/e.jpg" download>Download</a>
         </div>
       </div>
 
       <div class="card">
-        <a class="thumb" href="a.jpg" aria-label="Open Wallpaper 3"><img src="a.jpg" alt="NextFrame wallpaper 3"></a>
-        <div class="card-body">
+        <a class="thumb" href="wallpapers/a.jpg"><img src="wallpapers/a.jpg" alt="NextFrame wallpaper 3"></a>
+        <div class="card-body"> 
           <div class="card-title">NextFrame — Noir 03</div>
-          <a class="dl" href="a.jpg" download>Download</a>
+          <a class="dl" href="wallpapers/a.jpg" download>Download</a>
         </div>
       </div>
 
       <div class="card">
-        <a class="thumb" href="l.jpg" aria-label="Open Wallpaper 4"><img src="l.jpg" alt="NextFrame wallpaper 4"></a>
+        <a class="thumb" href="wallpapers/l.jpg"><img src="wallpapers/l.jpg" alt="NextFrame wallpaper 4"></a>
         <div class="card-body">
           <div class="card-title">NextFrame — Noir 04</div>
-          <a class="dl" href="l.jpg" download>Download</a>
+          <a class="dl" href="wallpapers/l.jpg" download>Download</a> 
         </div>
-      </div>
+      </div>  
 
       <div class="card">
-        <a class="thumb" href="w.jpg" aria-label="Open Wallpaper 5"><img src="w.jpg" alt="NextFrame wallpaper 5"></a>
+        <a class="thumb" href="wallpapers/w.jpg"><img src="wallpapers/w.jpg" alt="NextFrame wallpaper 5"></a>
         <div class="card-body">
           <div class="card-title">NextFrame — Noir 05</div>
-          <a class="dl" href="w.jpg" download>Download</a>
+          <a class="dl" href="wallpapers/w.jpg" download>Download</a> 
         </div>
-      </div>
+      </div>  
 
       <div class="card">
-        <a class="thumb" href="o.jpg" aria-label="Open Wallpaper 6"><img src="o.jpg" alt="NextFrame wallpaper 6"></a>
+        <a class="thumb" href="wallpapers/o.jpg"><img src="wallpapers/o.jpg" alt="NextFrame wallpaper 6"></a>
         <div class="card-body">
           <div class="card-title">NextFrame — Noir 06</div>
-          <a class="dl" href="o.jpg" download>Download</a>
+          <a class="dl" href="wallpapers/o.jpg" download>Download</a> 
         </div>
-      </div>
+      </div>  
 
       <div class="card">
-        <a class="thumb" href="rr.jpg" aria-label="Open Wallpaper 7"><img src="rr.jpg" alt="NextFrame wallpaper 7"></a>
+        <a class="thumb" href="wallpapers/rr.jpg"><img src="wallpapers/rr.jpg" alt="NextFrame wallpaper 7"></a>
         <div class="card-body">
           <div class="card-title">NextFrame — Noir 07</div>
-          <a class="dl" href="rr.jpg" download>Download</a>
+          <a class="dl" href="wallpapers/rr.jpg" download>Download</a>
         </div>
-      </div>
+      </div>  
 
       <div class="card">
-        <a class="thumb" href="ll.jpg" aria-label="Open Wallpaper 8"><img src="ll.jpg" alt="NextFrame wallpaper 8"></a>
+        <a class="thumb" href="wallpapers/ll.jpg"><img src="wallpapers/ll.jpg" alt="NextFrame wallpaper 8"></a>
         <div class="card-body">
           <div class="card-title">NextFrame — Noir 08</div>
-          <a class="dl" href="ll.jpg" download>Download</a>
+          <a class="dl" href="wallpapers/ll.jpg" download>Download</a>
         </div>
       </div>
-
+      
       <div class="card">
-        <a class="thumb" href="d.jpg" aria-label="Open Wallpaper 9"><img src="d.jpg" alt="NextFrame wallpaper 9"></a>
+        <a class="thumb" href="wallpapers/d.jpg"><img src="wallpapers/d.jpg" alt="NextFrame wallpaper 9"></a>
         <div class="card-body">
           <div class="card-title">NextFrame — Noir 09</div>
-          <a class="dl" href="d.jpg" download>Download</a>
+          <a class="dl" href="wallpapers/d.jpg" download>Download</a>
         </div>
       </div>
-
+      
       <div class="card">
-        <a class="thumb" href="f.jpg" aria-label="Open Wallpaper 10"><img src="f.jpg" alt="NextFrame wallpaper 10"></a>
+        <a class="thumb" href="wallpapers/f.jpg"><img src="wallpapers/f.jpg" alt="NextFrame wallpaper 10"></a>
         <div class="card-body">
           <div class="card-title">NextFrame — Noir 10</div>
-          <a class="dl" href="f.jpg" download>Download</a>
+          <a class="dl" href="wallpapers/f.jpg" download>Download</a>
         </div>
       </div>
-
-      <!-- optional extra tiles — remove if you want exactly 10 -->
+    
       <div class="card">
-        <a class="thumb" href="g.jpg" aria-label="Open Wallpaper 11"><img src="g.jpg" alt="NextFrame wallpaper 11"></a>
+        <a class="thumb" href="wallpapers/g.jpg"><img src="wallpapers/g.jpg" alt="NextFrame wallpaper 11"></a>
         <div class="card-body">
           <div class="card-title">NextFrame — Noir 11</div>
-          <a class="dl" href="g.jpg" download>Download</a>
+          <a class="dl" href="wallpapers/g.jpg" download>Download</a> 
         </div>
-      </div>
-
+      </div>  
+      
       <div class="card">
-        <a class="thumb" href="h.jpg" aria-label="Open Wallpaper 12"><img src="h.jpg" alt="NextFrame wallpaper 12"></a>
+        <a class="thumb" href="wallpapers/h.jpg"><img src="wallpapers/h.jpg" alt="NextFrame wallpaper 12"></a>
         <div class="card-body">
           <div class="card-title">NextFrame — Noir 12</div>
-          <a class="dl" href="h.jpg" download>Download</a>
+          <a class="dl" href="wallpapers/h.jpg" download>Download</a> 
         </div>
-      </div>
+      </div>  
     </div>
-
+      
     <footer>© <span id="year"></span> Aswin — The NextFrame • Made with purpose</footer>
   </div>
-
+          
   <script>
     document.getElementById('year').textContent = new Date().getFullYear();
 
-    // Optional: open full-size image in new tab when thumbnail is clicked (mobile-friendly)
     document.querySelectorAll('.thumb').forEach(a => {
       a.addEventListener('click', function(e){
-        // allow normal download link to be used; this opens the image directly for preview
         const href = this.getAttribute('href');
-        // on desktop browsers this will open in same tab unless user long-presses — prefer new tab:
         window.open(href, '_blank', 'noopener');
         e.preventDefault();
-      });
+      });   
     });
   </script>
 </body>
